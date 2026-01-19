@@ -43,10 +43,14 @@ The demo prints JSON lines that represent streaming chunks. The final chunk incl
 
 ## Project layout
 - `docker-compose.yml`
-- `src/setupWeaviate.ts`
+- `src/cli.ts`
+- `src/scripts/setupWeaviate.ts`
 - `src/agents/delegatingAgent.ts`
 - `src/agents/ragAgent.ts`
 - `src/agents/chartTool.ts`
+- `src/clients/weaviate.ts`
+- `src/clients/llm.ts`
+- `src/config/index.ts`
 
 ## Notes
 - The RAG agent attempts `nearText` if `WEAVIATE_VECTOR_SEARCH=true`, otherwise it falls back to `fetchObjects`.

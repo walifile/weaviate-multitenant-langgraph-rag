@@ -1,7 +1,7 @@
 import weaviate from "weaviate-client";
 import type { Collection, WeaviateClient } from "weaviate-client";
-import { config } from "./config.js";
-import { getWeaviateClient, QAPair } from "./weaviate.js";
+import { config } from "../config/index.js";
+import { getWeaviateClient, QAPair } from "../clients/weaviate.js";
 
 const SEED_DATA: QAPair[] = [
   {

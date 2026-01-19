@@ -1,5 +1,5 @@
 import { Annotation, StateGraph, END, START } from "@langchain/langgraph";
-import { callChatModel } from "../llm.js";
+import { callChatModel } from "../clients/llm.js";
 import { ragAgent, RagData, RagResult } from "./ragAgent.js";
 import { createChartConfig, ChartConfig } from "./chartTool.js";
 

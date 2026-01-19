@@ -1,7 +1,7 @@
 import type { WeaviateObject } from "weaviate-client";
-import { callChatModel } from "../llm.js";
-import { config } from "../config.js";
-import { getWeaviateClient, getTenantCollection, QAPair } from "../weaviate.js";
+import { callChatModel } from "../clients/llm.js";
+import { config } from "../config/index.js";
+import { getWeaviateClient, getTenantCollection, QAPair } from "../clients/weaviate.js";
 
 export type RagObject = {
   id: string;

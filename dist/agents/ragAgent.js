@@ -1,6 +1,6 @@
-import { callChatModel } from "../llm.js";
-import { config } from "../config.js";
-import { getWeaviateClient, getTenantCollection } from "../weaviate.js";
+import { callChatModel } from "../clients/llm.js";
+import { config } from "../config/index.js";
+import { getWeaviateClient, getTenantCollection } from "../clients/weaviate.js";
 function tokenize(text) {
     return text
         .toLowerCase()

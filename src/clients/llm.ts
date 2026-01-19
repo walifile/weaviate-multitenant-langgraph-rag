@@ -1,7 +1,7 @@
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import type { BaseMessage } from "@langchain/core/messages";
-import { config } from "./config.js";
+import { config } from "../config/index.js";
 
 export function getChatModel(): ChatGoogleGenerativeAI {
   if (!config.geminiApiKey) {

@@ -1,6 +1,6 @@
 import weaviate from "weaviate-client";
 import type { WeaviateClient, Collection } from "weaviate-client";
-import { config } from "./config.js";
+import { config } from "../config/index.js";
 
 export type QAPair = {
   fileId: string;
