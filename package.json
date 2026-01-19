@@ -1,0 +1,39 @@
+{
+  "name": "weaviate-langgraph-assessment",
+  "version": "0.1.0",
+  "description": "Weaviate multi-tenant RAG plus LangGraph delegating agent demo.",
+  "main": "src/index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "weaviate:up": "docker compose up -d",
+    "weaviate:down": "docker compose down",
+    "weaviate:setup": "tsx src/setupWeaviate.ts",
+    "demo": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "weaviate",
+    "langgraph",
+    "langchain",
+    "rag"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@langchain/google-genai": "^2.1.10",
+    "@langchain/langgraph": "^1.1.0",
+    "dotenv": "^17.2.3",
+    "langchain": "^1.2.10",
+    "weaviate-client": "^3.10.0"
+  }
+}
