@@ -1,4 +1,4 @@
-import { streamDelegatingAgent } from "./agents/delegatingAgent.js";
+import { streamDelegatingAgent } from "./agents/delegating/index.js";
 const query = process.argv.slice(2).join(" ") ||
     "Provide a chart and answer the warranty question from the database.";
 console.log(`Query: ${query}`);

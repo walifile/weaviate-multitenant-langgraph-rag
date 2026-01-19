@@ -45,13 +45,15 @@ The demo prints JSON lines that represent streaming chunks. The final chunk incl
 - `docker-compose.yml`
 - `src/cli.ts`
 - `src/scripts/setupWeaviate.ts`
-- `src/agents/delegatingAgent.ts`
-- `src/agents/ragAgent.ts`
-- `src/agents/chartTool.ts`
+- `src/agents/delegating/index.ts`
+- `src/agents/rag/index.ts`
+- `src/tools/chart.ts`
 - `src/clients/weaviate.ts`
 - `src/clients/llm.ts`
+- `src/utils/text.ts`
 - `src/config/index.ts`
 
 ## Notes
 - The RAG agent attempts `nearText` if `WEAVIATE_VECTOR_SEARCH=true`, otherwise it falls back to `fetchObjects`.
 - The LLM uses Gemini via LangChain. Set `GEMINI_MODEL` to override the default.
+

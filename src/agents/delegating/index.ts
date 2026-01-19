@@ -1,7 +1,8 @@
 import { Annotation, StateGraph, END, START } from "@langchain/langgraph";
-import { callChatModel } from "../clients/llm.js";
-import { ragAgent, RagData, RagResult } from "./ragAgent.js";
-import { createChartConfig, ChartConfig } from "./chartTool.js";
+import { callChatModel } from "../../clients/llm.js";
+import { ragAgent, RagData, RagResult } from "../rag/index.js";
+import { createChartConfig, ChartConfig } from "../../tools/chart.js";
+import { chunkText } from "../../utils/text.js";
 
 export type DelegatingData =
   | RagData
@@ -163,35 +164,6 @@ export async function runDelegatingAgent(query: string): Promise<DelegatingResul
   }) as Promise<DelegatingResult>;
 }
 
-function chunkText(text: string, size: number): string[] {
-  if (!text) {
-    return [""];
-  }
-
-  const chunks: string[] = [];
-  let start = 0;
-  while (start < text.length) {
-    const end = Math.min(start + size, text.length);
-    let slice = text.slice(start, end);
-
-    if (end < text.length) {
-      const lastSpace = slice.lastIndexOf(" ");
-      if (lastSpace > 40) {
-        slice = slice.slice(0, lastSpace);
-        start += lastSpace + 1;
-      } else {
-        start = end;
-      }
-    } else {
-      start = end;
-    }
-
-    chunks.push(slice.trim());
-  }
-
-  return chunks.filter((chunk) => chunk.length > 0);
-}
-
 export async function* streamDelegatingAgent(
   query: string,
   options: { chunkSize?: number } = {}
@@ -213,3 +185,4 @@ export async function* streamDelegatingAgent(
     };
   }
 }
+

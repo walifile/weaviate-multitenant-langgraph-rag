@@ -1,7 +1,7 @@
 import type { WeaviateObject } from "weaviate-client";
-import { callChatModel } from "../clients/llm.js";
-import { config } from "../config/index.js";
-import { getWeaviateClient, getTenantCollection, QAPair } from "../clients/weaviate.js";
+import { callChatModel } from "../../clients/llm.js";
+import { config } from "../../config/index.js";
+import { getWeaviateClient, getTenantCollection, QAPair } from "../../clients/weaviate.js";
 
 export type RagObject = {
   id: string;
@@ -226,3 +226,4 @@ export async function ragAgent(question: string): Promise<RagResult> {
     ]
   };
 }
+
