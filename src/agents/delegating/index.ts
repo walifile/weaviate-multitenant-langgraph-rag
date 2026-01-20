@@ -30,7 +30,7 @@ const DelegationState = Annotation.Root({
 function pickRoute(query: string): string {
   const text = query.toLowerCase();
   const wantsChart = /chart|graph|plot|visual/.test(text);
-  const wantsRag = /document|file|page|source|reference|rag|weaviate|database|policy|handbook|manual|guide/.test(
+  const wantsRag = /document|file|page|source|reference|rag|weaviate|database|policy|handbook|manual|guide|summary|summarize|project/.test(
     text
   );
   const wantsBoth = wantsChart && wantsRag;

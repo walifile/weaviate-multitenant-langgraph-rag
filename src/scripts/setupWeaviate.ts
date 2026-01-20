@@ -21,6 +21,13 @@ const SEED_DATA: QAPair[] = [
     question: "Who should be notified for a critical incident?",
     answer: "Notify the on-call lead and the security team immediately.",
     pageNumber: ["5"]
+  },
+  {
+    fileId: "project-overview",
+    question: "What does this project do?",
+    answer:
+      "This project demonstrates a multi-tenant Weaviate database, a LangGraph delegating agent, a mocked Chart.js tool, and a RAG flow that returns answers with file/page references.",
+    pageNumber: ["1"]
   }
 ];
 const SEED_VECTOR = [0.01, 0.02, 0.03];
@@ -75,13 +82,22 @@ async function ensureTenant(collection: Collection<QAPair>) {
 
 async function seedData(collection: Collection<QAPair>) {
   const tenantCollection = collection.withTenant(config.weaviateTenant);
-  const existing = await tenantCollection.query.fetchObjects({ limit: 1 });
+  const existing = await tenantCollection.query.fetchObjects({ limit: 50 });
+  const existingFileIds = new Set(
+    existing.objects
+      .map((object) => object.properties?.fileId)
+      .filter((fileId): fileId is string => Boolean(fileId))
+  );
 
-  if (existing.objects.length > 0) {
+  const entriesToInsert = SEED_DATA.filter(
+    (entry) => !existingFileIds.has(entry.fileId)
+  );
+
+  if (entriesToInsert.length === 0) {
     return;
   }
 
-  const objects = SEED_DATA.map((entry) => ({
+  const objects = entriesToInsert.map((entry) => ({
     properties: entry,
     vectors: SEED_VECTOR
   }));
