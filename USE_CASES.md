@@ -68,6 +68,8 @@ Goal: Output chunks are streamed as `{ answer, data }`.
 
 Test:
 - Run any demo command (with the pretty output pipeline).
+  - Example:
+    - `npm run demo -- "Explain the project in detail and include everything you can." | Where-Object { $_ -match '^\{' } | ForEach-Object { $_ | ConvertFrom-Json | ConvertTo-Json -Depth 6 }`
 
 Expected:
 - Each line is JSON with `answer` and `data`.
