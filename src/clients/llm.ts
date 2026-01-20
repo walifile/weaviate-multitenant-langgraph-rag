@@ -1,18 +1,18 @@
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { ChatOpenAI } from "@langchain/openai";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import type { BaseMessage } from "@langchain/core/messages";
 import { config } from "../config/index.js";
 
-export function getChatModel(): ChatGoogleGenerativeAI {
-  if (!config.geminiApiKey) {
+export function getChatModel(): ChatOpenAI {
+  if (!config.openAiApiKey) {
     throw new Error(
-      "Missing GEMINI_API_KEY. Set it in your environment to enable the LLM."
+      "Missing OPENAI_API_KEY. Set it in your environment to enable the LLM."
     );
   }
 
-  return new ChatGoogleGenerativeAI({
-    apiKey: config.geminiApiKey,
-    model: config.geminiModel,
+  return new ChatOpenAI({
+    apiKey: config.openAiApiKey,
+    model: config.openAiModel,
     temperature: 0.2
   });
 }

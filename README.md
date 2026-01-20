@@ -15,10 +15,10 @@ This repo implements a multi-tenant Weaviate setup, a LangGraph delegating agent
 ## Requirements
 - Node.js 18+
 - Docker
-- A Gemini API key (or update the LLM implementation to your local model)
+- An OpenAI API key (or update the LLM implementation to your local model)
 
 ## Setup
-1. Copy `.env.example` to `.env` and set `GEMINI_API_KEY`.
+1. Copy `.env.example` to `.env` and set `OPENAI_API_KEY`.
 2. Install dependencies: `npm install`.
 3. Start Weaviate: `npm run weaviate:up`.
 4. Create schema and seed data: `npm run weaviate:setup`.
@@ -55,5 +55,5 @@ The demo prints JSON lines that represent streaming chunks. The final chunk incl
 
 ## Notes
 - The RAG agent attempts `nearText` if `WEAVIATE_VECTOR_SEARCH=true`, otherwise it falls back to `fetchObjects`.
-- The LLM uses Gemini via LangChain. Set `GEMINI_MODEL` to override the default.
+- The LLM uses OpenAI via LangChain. Set `OPENAI_MODEL` to override the default.
 

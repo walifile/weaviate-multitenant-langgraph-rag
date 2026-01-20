@@ -7,8 +7,8 @@ export type AppConfig = {
   weaviateCollection: string;
   weaviateVectorSearch: boolean;
   weaviateApiKey: string;
-  geminiApiKey: string;
-  geminiModel: string;
+  openAiApiKey: string;
+  openAiModel: string;
   maxResults: number;
 };
 
@@ -19,7 +19,7 @@ export const config: AppConfig = {
   weaviateCollection: process.env.WEAVIATE_COLLECTION || "QAPair",
   weaviateVectorSearch: process.env.WEAVIATE_VECTOR_SEARCH === "true",
   weaviateApiKey: process.env.WEAVIATE_API_KEY || "",
-  geminiApiKey: process.env.GEMINI_API_KEY || "",
-  geminiModel: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+  openAiApiKey: process.env.OPENAI_API_KEY || "",
+  openAiModel: process.env.OPENAI_MODEL || "gpt-4o-mini",
   maxResults: Number(process.env.RAG_MAX_RESULTS || 4)
 };
