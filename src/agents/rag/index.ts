@@ -143,27 +143,11 @@ function buildFallbackAnswer(objects: RagObject[], referenceInfo: ReturnType<typ
 async function retrieveFromWeaviate(question: string): Promise<{ objects: WeaviateObject<QAPair, undefined>[]; source: string }> {
   const client = await getWeaviateClient();
   const tenantCollection = await getTenantCollection(client);
-  let source = "fetchObjects";
-  let objects: WeaviateObject<QAPair, undefined>[] = [];
-
-  try {
-    if (config.weaviateVectorSearch) {
-      const nearTextResult = await tenantCollection.query.nearText(question, {
-        limit: Math.max(config.maxResults, 3)
-      });
-      objects = nearTextResult.objects || [];
-      source = "nearText";
-    }
-  } catch (error) {
-    source = "fetchObjects";
-  }
-
-  if (objects.length === 0) {
-    const fallbackResult = await tenantCollection.query.fetchObjects({
-      limit: Math.max(config.maxResults, 6)
-    });
-    objects = fallbackResult.objects || [];
-  }
+  const source = "fetchObjects";
+  const fallbackResult = await tenantCollection.query.fetchObjects({
+    limit: Math.max(config.maxResults, 6)
+  });
+  const objects = fallbackResult.objects || [];
 
   await client.close();
   return { objects, source };

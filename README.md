@@ -43,6 +43,7 @@ The demo prints JSON lines that represent streaming chunks. The final chunk incl
 
 ## Project layout
 - `docker-compose.yml`
+- `USE_CASES.md`
 - `src/cli.ts`
 - `src/scripts/setupWeaviate.ts`
 - `src/agents/delegating/index.ts`
@@ -54,6 +55,7 @@ The demo prints JSON lines that represent streaming chunks. The final chunk incl
 - `src/config/index.ts`
 
 ## Notes
-- The RAG agent attempts `nearText` if `WEAVIATE_VECTOR_SEARCH=true`, otherwise it falls back to `fetchObjects`.
+- The RAG agent uses `fetchObjects` to retrieve data from Weaviate.
 - The LLM uses OpenAI via LangChain. Set `OPENAI_MODEL` to override the default.
+- Seed data inserts a small placeholder vector since the vectorizer is set to `none`.
 

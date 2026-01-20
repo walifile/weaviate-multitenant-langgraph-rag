@@ -5,7 +5,6 @@ export type AppConfig = {
   weaviateGrpcPort: number;
   weaviateTenant: string;
   weaviateCollection: string;
-  weaviateVectorSearch: boolean;
   weaviateApiKey: string;
   openAiApiKey: string;
   openAiModel: string;
@@ -17,7 +16,6 @@ export const config: AppConfig = {
   weaviateGrpcPort: Number(process.env.WEAVIATE_GRPC_PORT || 50051),
   weaviateTenant: process.env.WEAVIATE_TENANT || "tenant-a",
   weaviateCollection: process.env.WEAVIATE_COLLECTION || "QAPair",
-  weaviateVectorSearch: process.env.WEAVIATE_VECTOR_SEARCH === "true",
   weaviateApiKey: process.env.WEAVIATE_API_KEY || "",
   openAiApiKey: process.env.OPENAI_API_KEY || "",
   openAiModel: process.env.OPENAI_MODEL || "gpt-4o-mini",

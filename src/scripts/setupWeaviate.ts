@@ -23,6 +23,7 @@ const SEED_DATA: QAPair[] = [
     pageNumber: ["5"]
   }
 ];
+const SEED_VECTOR = [0.01, 0.02, 0.03];
 
 async function ensureCollection(client: WeaviateClient) {
   const exists = await client.collections.exists(config.weaviateCollection);
@@ -80,12 +81,18 @@ async function seedData(collection: Collection<QAPair>) {
     return;
   }
 
-  const objects = SEED_DATA.map((entry, index) => ({
-    id: `seed-${index + 1}`,
-    properties: entry
+  const objects = SEED_DATA.map((entry) => ({
+    properties: entry,
+    vectors: SEED_VECTOR
   }));
 
-  await tenantCollection.data.insertMany(objects);
+  const result = await tenantCollection.data.insertMany(objects);
+  if (result.hasErrors) {
+    const errorDetails = Object.values(result.errors)
+      .map((error) => error.message)
+      .join("; ");
+    throw new Error(`Seed insert failed: ${errorDetails || "Unknown error"}`);
+  }
 }
 
 async function main() {
